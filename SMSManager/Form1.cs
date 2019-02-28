@@ -127,7 +127,6 @@ namespace SMSManager
                     var timeout = Convert.ToInt32(txtTimeout.Value);
                     foreach (var item in smsDatas)
                     {
-                        System.Threading.Thread.Sleep(5000);
                         item.Content = txt_message.Text.Replace("[Name]", item.Name);
                         item.Success = objclsSMS.sendMsg(this.port, "0" + item.Number, item.Content, timeout * 1000);
                     }

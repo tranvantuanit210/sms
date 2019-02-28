@@ -160,7 +160,7 @@
             // 
             this.txtTimeout.Location = new System.Drawing.Point(101, 47);
             this.txtTimeout.Minimum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -168,7 +168,7 @@
             this.txtTimeout.Size = new System.Drawing.Size(115, 20);
             this.txtTimeout.TabIndex = 19;
             this.txtTimeout.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
