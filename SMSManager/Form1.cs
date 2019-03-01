@@ -5,7 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,11 +12,6 @@ namespace SMSManager
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-            btnDeleteFile.Visible = false;
-        }
         //congfig sms 
         SerialPort port = new SerialPort();
         clsSMS objclsSMS = new clsSMS();
@@ -25,6 +19,15 @@ namespace SMSManager
         public bool isModemConnect = false;
         public bool hasFileExcel = false;
         IList<SmsInfor> smsDatas = new List<SmsInfor>();
+        string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\content.txt";
+
+        public Form1()
+        {
+            InitializeComponent();
+            btnDeleteFile.Visible = false;
+            dataGridView1.DataSource = smsDatas;
+        }
+        
 
         private void btn_connect_Click(object sender, EventArgs e)
         {
@@ -57,7 +60,7 @@ namespace SMSManager
             string[] ports = SerialPort.GetPortNames();
             foreach (string port in ports)
             {
-                this.port = objclsSMS.OpenPort(port, Convert.ToInt32(115200), Convert.ToInt32(8), Convert.ToInt32(100), Convert.ToInt32(100));
+                this.port = objclsSMS.OpenPort(port, Convert.ToInt32(9600), Convert.ToInt32(8), Convert.ToInt32(100), Convert.ToInt32(100));
                 bool isConnect = objclsSMS.CheckPortSendSMS(this.port);
                 if (isConnect)
                 {
@@ -105,9 +108,13 @@ namespace SMSManager
                         {
                             smsDatas.Insert(0, new SmsInfor()
                             {
-                                Name = "",
+                                Name = null,
                                 Number = txt_phone.Text,
-                                Content = txt_message.Text
+                                Content = txt_message.Text,
+                                Money = null,
+                                Field01 = null,
+                                Field02 = null,
+                                Field03 = null,
                             });
                         }                        
                     }
@@ -127,8 +134,11 @@ namespace SMSManager
                     var timeout = Convert.ToInt32(txtTimeout.Value);
                     foreach (var item in smsDatas)
                     {
-                        item.Content = txt_message.Text.Replace("[Name]", item.Name);
-                        item.Success = objclsSMS.sendMsg(this.port, "0" + item.Number, item.Content, timeout * 1000);
+                        var content = txt_message.Text;
+                        item.Content = content.Replace("[name]", item.Name).Replace("[money]", item.Money).Replace("[field01]", item.Field01)
+                            .Replace("[field02]", item.Field02).Replace("[field03]", item.Field03);
+                        var number = item.Number.Substring(item.Number.Length - 9);
+                        item.Success = objclsSMS.sendMsg(this.port, "0" + number, item.Content, timeout * 1000);
                     }
 
                     dataGridView1.BeginInvoke(new Action(() =>
@@ -193,10 +203,20 @@ namespace SMSManager
                     int row = 1;
                     for (int a = 0; a < noOfRow; a++)
                     {
+                        var number = worksheet.GetValue(row, 1);
+                        var name = worksheet.GetValue(row, 2);
+                        var money = worksheet.GetValue(row, 3);
+                        var field01 = worksheet.GetValue(row, 4);
+                        var field02 = worksheet.GetValue(row, 5);
+                        var field03 = worksheet.GetValue(row, 6);
                         var sms = new SmsInfor
                         {
-                            Number = worksheet.GetValue(row, 1).ToString(),
-                            Name = worksheet.GetValue(row, 2).ToString()
+                            Number = number == null ? null : number.ToString(),
+                            Name = name == null ? null : name.ToString(),
+                            Money = money == null ? null : money.ToString(),
+                            Field01 = field01 == null ? null : field01.ToString(),
+                            Field02 = field02 == null ? null : field02.ToString(),
+                            Field03 = field03 == null ? null : field03.ToString(),
                         };
 
                         smsDatas.Add(sms);
@@ -204,8 +224,10 @@ namespace SMSManager
                     }
                 }
 
-                dataGridView1.DataSource = smsDatas;
                 btnDeleteFile.Visible = true;
+                dataGridView1.DataSource = null;
+                dataGridView1.Refresh();
+                dataGridView1.DataSource = smsDatas;
             }
             else return;
         }
@@ -259,6 +281,26 @@ namespace SMSManager
                 lbl_status.Text = "Trạng thái: Đang kết nối Modem GMS cổng " + port;
 
                 isModemConnect = true;
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (File.Exists(filePath))
+            {
+                StreamWriter sw = new StreamWriter(filePath, false);
+                sw.WriteLine(txt_message.Text);
+                sw.Close();
+            }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(filePath);
+                txt_message.Text = sr.ReadToEnd();
+                sr.Close();
             }
         }
     }

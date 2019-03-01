@@ -10,6 +10,10 @@ namespace SMSManager
     {
         public string Name { get; set; }
         public string Number { get; set; }
+        public string Money { get; set; }
+        public string Field01 { get; set; }
+        public string Field02 { get; set; }
+        public string Field03 { get; set; }
         public string Content { get; set; }
         public bool Success { get; set; }
     }

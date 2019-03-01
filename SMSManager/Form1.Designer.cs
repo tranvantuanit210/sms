@@ -50,7 +50,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 24);
+            this.label1.Location = new System.Drawing.Point(22, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
@@ -69,7 +69,8 @@
             // 
             this.txt_port.Location = new System.Drawing.Point(101, 21);
             this.txt_port.Name = "txt_port";
-            this.txt_port.Size = new System.Drawing.Size(147, 20);
+            this.txt_port.ReadOnly = true;
+            this.txt_port.Size = new System.Drawing.Size(267, 20);
             this.txt_port.TabIndex = 2;
             // 
             // txt_phone
@@ -77,13 +78,13 @@
             this.txt_phone.Location = new System.Drawing.Point(101, 78);
             this.txt_phone.Multiline = true;
             this.txt_phone.Name = "txt_phone";
-            this.txt_phone.Size = new System.Drawing.Size(262, 20);
+            this.txt_phone.Size = new System.Drawing.Size(267, 20);
             this.txt_phone.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 112);
+            this.label3.Location = new System.Drawing.Point(379, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 4;
@@ -91,15 +92,15 @@
             // 
             // txt_message
             // 
-            this.txt_message.Location = new System.Drawing.Point(101, 112);
+            this.txt_message.Location = new System.Drawing.Point(438, 20);
             this.txt_message.Multiline = true;
             this.txt_message.Name = "txt_message";
-            this.txt_message.Size = new System.Drawing.Size(262, 160);
+            this.txt_message.Size = new System.Drawing.Size(405, 78);
             this.txt_message.TabIndex = 5;
             // 
             // btn_send
             // 
-            this.btn_send.Location = new System.Drawing.Point(288, 278);
+            this.btn_send.Location = new System.Drawing.Point(438, 104);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(75, 23);
             this.btn_send.TabIndex = 7;
@@ -112,7 +113,7 @@
             this.lbl_status.AutoSize = true;
             this.lbl_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_status.ForeColor = System.Drawing.Color.Red;
-            this.lbl_status.Location = new System.Drawing.Point(98, 310);
+            this.lbl_status.Location = new System.Drawing.Point(519, 107);
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.Size = new System.Drawing.Size(72, 15);
             this.lbl_status.TabIndex = 15;
@@ -120,9 +121,9 @@
             // 
             // btnSelectFile
             // 
-            this.btnSelectFile.Location = new System.Drawing.Point(101, 278);
+            this.btnSelectFile.Location = new System.Drawing.Point(146, 104);
             this.btnSelectFile.Name = "btnSelectFile";
-            this.btnSelectFile.Size = new System.Drawing.Size(69, 23);
+            this.btnSelectFile.Size = new System.Drawing.Size(101, 23);
             this.btnSelectFile.TabIndex = 16;
             this.btnSelectFile.Text = "Chọn File";
             this.btnSelectFile.UseVisualStyleBackColor = true;
@@ -130,9 +131,9 @@
             // 
             // btnDeleteFile
             // 
-            this.btnDeleteFile.Location = new System.Drawing.Point(176, 278);
+            this.btnDeleteFile.Location = new System.Drawing.Point(253, 104);
             this.btnDeleteFile.Name = "btnDeleteFile";
-            this.btnDeleteFile.Size = new System.Drawing.Size(106, 23);
+            this.btnDeleteFile.Size = new System.Drawing.Size(115, 23);
             this.btnDeleteFile.TabIndex = 17;
             this.btnDeleteFile.Text = "Xóa File";
             this.btnDeleteFile.UseVisualStyleBackColor = true;
@@ -142,15 +143,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(394, 19);
+            this.dataGridView1.Location = new System.Drawing.Point(25, 162);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(447, 282);
+            this.dataGridView1.Size = new System.Drawing.Size(818, 289);
             this.dataGridView1.TabIndex = 18;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 49);
+            this.label4.Location = new System.Drawing.Point(20, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 1;
@@ -158,7 +159,7 @@
             // 
             // txtTimeout
             // 
-            this.txtTimeout.Location = new System.Drawing.Point(101, 47);
+            this.txtTimeout.Location = new System.Drawing.Point(101, 48);
             this.txtTimeout.Minimum = new decimal(new int[] {
             10,
             0,
@@ -184,9 +185,9 @@
             // 
             // btn_connect
             // 
-            this.btn_connect.Location = new System.Drawing.Point(265, 18);
+            this.btn_connect.Location = new System.Drawing.Point(25, 104);
             this.btn_connect.Name = "btn_connect";
-            this.btn_connect.Size = new System.Drawing.Size(98, 23);
+            this.btn_connect.Size = new System.Drawing.Size(115, 23);
             this.btn_connect.TabIndex = 6;
             this.btn_connect.Text = "Kết Nối";
             this.btn_connect.UseVisualStyleBackColor = true;
@@ -196,7 +197,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 346);
+            this.ClientSize = new System.Drawing.Size(855, 466);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTimeout);
             this.Controls.Add(this.dataGridView1);
@@ -213,9 +214,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(871, 505);
+            this.MinimumSize = new System.Drawing.Size(871, 505);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMS";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTimeout)).EndInit();
             this.ResumeLayout(false);

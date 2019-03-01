@@ -364,7 +364,7 @@ namespace SMSManager
 
             try
             {
-
+                timeout = timeout * 2;
                 string recievedData = ExecCommand(port, "AT", 300, "No phone connected");
                 recievedData = ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
                 String command = "AT+CMGS=\"" + PhoneNo + "\"";
