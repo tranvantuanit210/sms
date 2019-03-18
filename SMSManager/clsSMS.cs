@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Text;
 using System.IO.Ports;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace SMSManager
 {

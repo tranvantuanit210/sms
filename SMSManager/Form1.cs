@@ -135,8 +135,12 @@ namespace SMSManager
                     foreach (var item in smsDatas)
                     {
                         var content = txt_message.Text;
+                        // replace field in excel file
+                        // replate field in family
+                        var familyRandom = GetRandomInFamily();
                         item.Content = content.Replace("[name]", item.Name).Replace("[money]", item.Money).Replace("[field01]", item.Field01)
-                            .Replace("[field02]", item.Field02).Replace("[field03]", item.Field03);
+                            .Replace("[field02]", item.Field02).Replace("[field03]", item.Field03).Replace("{}", familyRandom);
+
                         var number = item.Number.Substring(item.Number.Length - 9);
                         item.Success = objclsSMS.sendMsg(this.port, "0" + number, item.Content, timeout * 1000);
                     }
@@ -302,6 +306,17 @@ namespace SMSManager
                 txt_message.Text = sr.ReadToEnd();
                 sr.Close();
             }
+        }
+
+        private string GetRandomInFamily()
+        {
+            IList<string> families = new List<string>() { "ông", "bà", "anh", "chị" };
+            // add items to the list
+            Random random = new Random();
+            int index = random.Next(families.Count);
+            string randomString = families[index];
+
+            return randomString;
         }
     }
 }
